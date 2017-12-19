@@ -17,7 +17,25 @@ access to your repos.
 4. Navigate to Build Settings > Environment variables
 5. Add a new variable called `GH_AUTH_TOKEN` with the new token
 
-Once you have this token, you can easily import it to other repos on CircleCI and skip steps 1, 2, and 5.
+For subsequent projects:
+
+1. Open the CircleCI project settings
+2. Navigate to Build Settings > Environment variables
+3. Click "Import Variable(s)"
+4. Select a project that you've previous added `GH_AUTH_TOKEN` to
+5. Click the checkbox next to `GH_AUTH_TOKEN` and import
+
+### CircleCI Artifact API Token
+
+To access artifacts for private repos, a CircleCI API token is required.
+
+1. Open the CircleCI project settings
+2. Navigate to Permissions > API Permissions
+3. Click "Create Token"
+  - Select "Build Artifacts" from scope dropdown
+  - Name the token "artifacts" (or whatever you prefer)
+4. Navigate to Build Settings > Environment variables
+5. Add a new variable called `CIRCLE_CI_API_TOKEN` with the new token
 
 ### Run Jest with Coverage reporting
 
