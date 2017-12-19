@@ -20,7 +20,7 @@ exports.postComment = function postComment ({
     console.log(`No prior coverage found`)
   }
 
-  const result = bot.comment(`
+  const result = JSON.parse(bot.comment(`
 <a>
   <strong><a href="${bot.artifactUrl(`/${coverageHtmlRoot}/index.html`)}">Code Coverage</a></strong> 
   from Circle CI <a href="${process.env.CIRCLE_BUILD_URL}">build ${process.env.CIRCLE_BUILD_NUM}</a>
@@ -29,6 +29,6 @@ exports.postComment = function postComment ({
     : ''}
 </p>
 ${format(coverage, priorCoverage, bot.artifactUrl(`/${coverageHtmlRoot}`))}
-`)
+`))
   return result && result.html_url
 }
