@@ -1,6 +1,6 @@
 # coverage-github-reporter
 
-[![CircleCI](https://circleci.com/gh/vivlabs/coverage-github-reporter.svg?style=svg)](https://circleci.com/gh/vivlabs/coverage-github-reporter)
+[![npm version](https://badge.fury.io/js/coverage-github-reporter.svg)](https://badge.fury.io/js/coverage-github-reporter) [![CircleCI](https://circleci.com/gh/vivlabs/coverage-github-reporter.svg?style=svg)](https://circleci.com/gh/vivlabs/coverage-github-reporter)
 
 Report Jest/Istanbul coverage statistics from CircleCI to GitHub
 
