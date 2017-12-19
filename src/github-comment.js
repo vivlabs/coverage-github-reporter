@@ -1,5 +1,3 @@
-const { resolve } = require('path')
-
 const { Bot } = require('./bot')
 const { parseFile } = require('./parse-coverage')
 const { format } = require('./format-coverage')
@@ -7,11 +5,12 @@ const { format } = require('./format-coverage')
 exports.postComment = function postComment ({
   coverageJsonFilename = 'coverage/coverage-final.json',
   coverageHtmlRoot = 'coverage/lcov-report',
-  defaultBaseBranch = 'master'
+  defaultBaseBranch = 'master',
+  root = process.cwd()
 }) {
   const bot = Bot.create()
 
-  const coverage = parseFile(resolve(__dirname, '..'))
+  const coverage = parseFile(root)
 
   const branch = bot.getBaseBranch(defaultBaseBranch)
   const { priorCoverage, priorBuild } = bot.getPriorBuild(branch, coverageJsonFilename)
