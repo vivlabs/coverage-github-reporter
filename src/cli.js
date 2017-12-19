@@ -13,7 +13,7 @@ const {
   branch
 } = args.parse(process.argv)
 
-const { run } = require('./github-comment')
+const { postComment } = require('./github-comment')
 
 try {
   const params = {
@@ -22,7 +22,8 @@ try {
     defaultBaseBranch: branch
   }
   console.log('Running with', params)
-  run(params)
+  const url = postComment(params)
+  console.log('Posted to ', url)
 } catch (err) {
   console.error(err)
 }

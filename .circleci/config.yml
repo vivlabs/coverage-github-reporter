@@ -43,6 +43,14 @@ jobs:
           name: Post artifact comment to GitHub
           command: |
             node src/cli.js
+      - deploy:
+          name: npm publish (pushed tags only)
+          command: .circleci/deploy.sh
+
+deployment:
+  production:
+    tag: /v[0-9]+(\.[0-9]+)*(-.*)?/
+    owner: vivlabs
 
 experimental:
   notify:

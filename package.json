@@ -1,6 +1,6 @@
 {
   "name": "coverage-github-reporter",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha1",
   "description": "Report coverage statistics to github",
   "main": "index.js",
   "repository": "https://github.com/vivlabs/coverage-github-reporter",

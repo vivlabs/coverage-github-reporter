@@ -4,7 +4,7 @@ const { Bot } = require('./bot')
 const { parseFile } = require('./parse-coverage')
 const { format } = require('./format-coverage')
 
-exports.run = function ({
+exports.postComment = function postComment ({
   coverageJsonFilename = 'coverage/coverage-final.json',
   coverageHtmlRoot = 'coverage/lcov-report',
   defaultBaseBranch = 'master'
@@ -20,7 +20,7 @@ exports.run = function ({
     console.log(`No prior coverage found`)
   }
 
-  return bot.comment(`
+  const result = bot.comment(`
 <a>
   <strong><a href="${bot.artifactUrl(`/${coverageHtmlRoot}/index.html`)}">Code Coverage</a></strong> 
   from Circle CI <a href="${process.env.CIRCLE_BUILD_URL}">build ${process.env.CIRCLE_BUILD_NUM}</a>
@@ -30,4 +30,5 @@ exports.run = function ({
 </p>
 ${format(coverage, priorCoverage, bot.artifactUrl(`/${coverageHtmlRoot}`))}
 `)
+  return result && result.html_url
 }
