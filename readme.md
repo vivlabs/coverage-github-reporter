@@ -6,6 +6,21 @@ Report Jest/Istanbul coverage statistics from CircleCI to GitHub
 
 ## Setup
 
+### GitHub Auth Token
+
+A GitHub auth token is required to post a comment on github. I recommend creating a separate "bot" GitHub account with
+access to your repos.
+
+1. Navigate to [Personal access tokens](https://github.com/settings/tokens) on GitHub
+2. Click "Generate new token" and generate a new token (with **repo** access if your repo is private)
+3. Open the CircleCI project settings
+4. Navigate to Build Settings > Environment variables
+5. Add a new variable called `GH_AUTH_TOKEN` with the new token
+
+Once you have this token, you can easily import it to other repos on CircleCI and skip steps 1, 2, and 5.
+
+### Run Jest with Coverage reporting
+
 Add to your `package.json`:
 ```bash
 npm install --save-dev coverage-github-reporter
@@ -19,6 +34,8 @@ If you're using Jest, I suggest adding a test script along these lines:
 ```
 
 This will generate a coverage in `coverage/`
+
+### CircleCI configuration
 
 Update your `.circleci/config.yml`:
 ```yml
