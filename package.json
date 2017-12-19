@@ -1,7 +1,7 @@
 {
   "name": "coverage-github-reporter",
   "version": "1.0.0-alpha1",
-  "description": "Report coverage statistics to github",
+  "description": "Report Jest/Istanbul coverage statistics from CircleCI to GitHub",
   "main": "index.js",
   "repository": "https://github.com/vivlabs/coverage-github-reporter",
   "author": "Marcello Bastea-Forte <marcello@viv.ai>",
