@@ -1,0 +1,36 @@
+{
+  "name": "coverage-github-reporter",
+  "version": "1.0.0",
+  "description": "Report coverage statistics to github",
+  "main": "index.js",
+  "repository": "https://github.com/vivlabs/coverage-github-reporter",
+  "author": "Marcello Bastea-Forte <marcello@viv.ai>",
+  "license": "MIT",
+  "bin" : {
+    "report-coverage" : "./src/cli.js"
+  },
+  "scripts": {
+    "lint": "standard",
+    "test": "cross-env NODE_ENV=test jest",
+    "test-dev": "cross-env NODE_ENV=test jest --watch --onlyChanged",
+    "test-ci": "cross-env NODE_ENV=test TEST_REPORT_PATH=coverage jest --coverage --ci --silent"
+  },
+  "dependencies": {
+    "args": "^3.0.8",
+    "circle-github-bot": "^0.4.0",
+    "cross-env": "^5.1.1",
+    "istanbul-lib-coverage": "^1.1.1",
+    "pad": "^2.0.3"
+  },
+  "devDependencies": {
+    "jest": "^22.0.0",
+    "jest-junit-reporter": "^1.1.0",
+    "standard": "^10.0.3"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "testResultsProcessor": "./node_modules/jest-junit-reporter"
+  }
+}

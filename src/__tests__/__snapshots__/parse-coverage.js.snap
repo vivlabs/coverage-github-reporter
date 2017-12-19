@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parseFile parses 1`] = `
+Object {
+  "*": Object {
+    "percent": 18.57142857142857,
+  },
+  "src/": Object {
+    "files": Object {
+      "bot.js": Object {
+        "percent": 0,
+      },
+      "cli.js": Object {
+        "percent": 0,
+      },
+      "format-coverage.js": Object {
+        "percent": 36.13458528951487,
+      },
+      "github-comment.js": Object {
+        "percent": 0,
+      },
+      "parse-coverage.js": Object {
+        "percent": 13.636363636363637,
+      },
+    },
+    "percent": 18.57142857142857,
+  },
+}
+`;
+
+exports[`parseFile parses 2 1`] = `
+Object {
+  "*": Object {
+    "percent": 58.705357142857146,
+  },
+  "src/": Object {
+    "files": Object {
+      "bot.js": Object {
+        "percent": 0,
+      },
+      "cli.js": Object {
+        "percent": 0,
+      },
+      "format-coverage.js": Object {
+        "percent": 94.05320813771519,
+      },
+      "github-comment.js": Object {
+        "percent": 0,
+      },
+      "parse-coverage.js": Object {
+        "percent": 90.58441558441558,
+      },
+    },
+    "percent": 58.705357142857146,
+  },
+}
+`;

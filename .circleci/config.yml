@@ -1,0 +1,51 @@
+version: 2
+
+general:
+  artifacts:
+    - "coverage/lcov-report"
+
+defaults: &defaults
+  working_directory: ~/app
+  docker:
+    - image: node:8.9.3
+
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: node-yarn-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: Yarn install
+          command: |
+            yarn install --frozen-lockfile --non-interactive
+      - save_cache:
+          key: node-yarn-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Lint
+          command: |
+            yarn run lint
+      - run:
+          name: Test
+          command: |
+            yarn test-ci
+            mkdir -p coverage/reports/junit
+            cp coverage/test-report.xml coverage/reports/junit
+      - store_test_results:
+          path: coverage/reports
+      - store_artifacts:
+          path: coverage
+          destination: coverage
+      - run:
+          name: Post artifact comment to GitHub
+          command: |
+            node src/cli.js
+
+experimental:
+  notify:
+    branches:
+      only:
+        - master

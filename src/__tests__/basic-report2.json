@@ -1,0 +1,28 @@
+{
+  "*": {
+    "percent": 18.57142857142857
+  },
+  "src/": {
+    "files": {
+      "bot.js": {
+        "percent": 100
+      },
+      "cli.js": {
+        "percent": 60
+      },
+      "format-coverage.js": {
+        "percent": 35
+      },
+      "github-comment.js": {
+        "percent": 10
+      },
+      "parse-coverage.js": {
+        "percent": 0
+      },
+      "new-file.js": {
+        "percent": 0
+      }
+    },
+    "percent": 10
+  }
+}
