@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env node
 
 const args = require('args')
 

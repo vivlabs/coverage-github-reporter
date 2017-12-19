@@ -42,7 +42,7 @@ jobs:
 
       - run:
           name: Post coverage comment to GitHub
-          command: report-coverage
+          command: npx report-coverage
 ```
 
 ### Customization
