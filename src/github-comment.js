@@ -1,3 +1,4 @@
+const { resolve } = require('path')
 const { Bot } = require('./bot')
 const { parseFile } = require('./parse-coverage')
 const { format } = require('./format-coverage')
@@ -10,7 +11,7 @@ exports.postComment = function postComment ({
 }) {
   const bot = Bot.create()
 
-  const coverage = parseFile(root)
+  const coverage = parseFile(root, resolve(root, coverageJsonFilename))
 
   const branch = bot.getBaseBranch(defaultBaseBranch)
   const { priorCoverage, priorBuild } = bot.getPriorBuild(branch, coverageJsonFilename)

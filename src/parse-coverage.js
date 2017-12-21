@@ -8,7 +8,7 @@ function calculateCoverage (stats) {
   //   functions: { total: 169, covered: 76, skipped: 0, pct: 44.97 },
   //   branches: { total: 308, covered: 88, skipped: 0, pct: 28.57 } } }
   if (stats.total === 0) {
-    return 1
+    return 100
   }
   return (stats.covered + stats.skipped) / stats.total * 100
 }
@@ -55,7 +55,7 @@ exports.coverageJsonToReport = function (json, base) {
   return report
 }
 
-exports.parseFile = function (base, coveragePath = resolve(base, 'coverage/coverage-final.json')) {
+exports.parseFile = function (base, coveragePath) {
   const json = JSON.parse(readFileSync(coveragePath, 'utf8'))
   return exports.coverageJsonToReport(json, base)
 }

@@ -55,3 +55,37 @@ Object {
   },
 }
 `;
+
+exports[`parseFile parses 3 1`] = `
+Object {
+  "*": Object {
+    "percent": 54.46241911398706,
+  },
+  "subdir/src/": Object {
+    "files": Object {
+      "blank.js": Object {
+        "percent": 100,
+      },
+      "bot.js": Object {
+        "percent": 0,
+      },
+      "cli.js": Object {
+        "percent": 0,
+      },
+      "curl.js": Object {
+        "percent": 0,
+      },
+      "format-coverage.js": Object {
+        "percent": 89.55566905005108,
+      },
+      "github-comment.js": Object {
+        "percent": 0,
+      },
+      "parse-coverage.js": Object {
+        "percent": 90.58441558441558,
+      },
+    },
+    "percent": 54.46241911398706,
+  },
+}
+`;
