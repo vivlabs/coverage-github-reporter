@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`format formats delta report 1`] = `
-"Project Coverage    18.57% 💔   (no change)
+"  18.57% 💔   (no change)
 <pre>
 src/                    10.00% 💔    -8.57% 😭
   bot.js               100.00% ✅  +100.00% 🎉
@@ -20,7 +20,7 @@ src/    10.00% 💔
 `;
 
 exports[`format formats delta report 2 1`] = `
-"Project Coverage    18.57% 💔   (no change)
+"  18.57% 💔   (no change)
 <pre>
 src/                   20.00% 💔   +10.00% 🙂
   bot.js               80.00% 💚   -20.00% 😡
@@ -36,7 +36,7 @@ src/    20.00% 💔
 `;
 
 exports[`format formats delta report with links 1`] = `
-"<a href=\\"http://example.com/artifacts/index.html\\">Project Coverage</a>    18.57% 💔   (no change)
+"  18.57% 💔   (no change)
 <pre>
 <a href=\\"http://example.com/artifacts/src/index.html\\">src/                </a>    10.00% 💔    -8.57% 😭
 <a href=\\"http://example.com/artifacts/src/bot.js.html\\">  bot.js            </a>   100.00% ✅  +100.00% 🎉
@@ -55,7 +55,7 @@ exports[`format formats delta report with links 1`] = `
 `;
 
 exports[`format formats delta report with no changes 1`] = `
-"Project Coverage    18.57% 💔   (no change)
+"  18.57% 💔   (no change)
 <details>
 <summary>Folder Coverage</summary>
 <pre>
@@ -65,7 +65,7 @@ src/    10.00% 💔
 `;
 
 exports[`format formats report 1`] = `
-"Project Coverage    18.57% 💔 
+"  18.57% 💔 
 <details>
 <summary>Folder Coverage</summary>
 <pre>
@@ -75,7 +75,7 @@ src/    18.57% 💔
 `;
 
 exports[`format formats report with links 1`] = `
-"<a href=\\"http://example.com/artifacts/index.html\\">Project Coverage</a>    18.57% 💔 
+"  18.57% 💔 
 <details>
 <summary>Folder Coverage</summary>
 <pre>
