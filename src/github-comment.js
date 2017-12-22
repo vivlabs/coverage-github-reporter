@@ -23,6 +23,7 @@ ${changed}
 <summary>Folder Coverage</summary>
 ${folders}
 </details>
+<p>
 
 From Circle CI [build ${buildNum}](${buildUrl}) ${priorBuildNum
     ? `(compared to [build ${priorBuildNum}](${priorBuildUrl}) of \`${branch}\` branch)`
