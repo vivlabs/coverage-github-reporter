@@ -27,7 +27,7 @@ exports.postComment = function postComment ({
   ${priorBuild
     ? `(compared to <a href="${process.env.CIRCLE_BUILD_URL.replace(/\/\d+$/, `/${priorBuild}`)}">build ${priorBuild}</a> of <code>${branch}</code> branch)`
     : ''}
-</p>
+
 ${format(coverage, priorCoverage, bot.artifactUrl(`/${coverageHtmlRoot}`))}
 `))
   return result && result.html_url

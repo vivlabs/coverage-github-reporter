@@ -66,9 +66,6 @@ src/    10.00% 💔
 
 exports[`format formats report 1`] = `
 "Project Coverage    18.57% 💔 
-<pre>
-src/    18.57% 💔 
-</pre>
 <details>
 <summary>Folder Coverage</summary>
 <pre>
@@ -79,9 +76,6 @@ src/    18.57% 💔
 
 exports[`format formats report with links 1`] = `
 "<a href=\\"http://example.com/artifacts/index.html\\">Project Coverage</a>    18.57% 💔 
-<pre>
-<a href=\\"http://example.com/artifacts/src/index.html\\">src/</a>    18.57% 💔 
-</pre>
 <details>
 <summary>Folder Coverage</summary>
 <pre>

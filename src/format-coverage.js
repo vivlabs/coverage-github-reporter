@@ -116,7 +116,7 @@ exports.format = function (report, priorReport = {}, baseUrl = undefined) {
 
     const folderReport = report[path]
     const folderPriorReport = priorReport[path]
-    if (getPercent(folderReport) !== getPercent(folderPriorReport)) {
+    if (folderPriorReport && getPercent(folderReport) !== getPercent(folderPriorReport)) {
       changedRows.push({
         label: path,
         path,
@@ -134,7 +134,7 @@ exports.format = function (report, priorReport = {}, baseUrl = undefined) {
   }
 
   const comment = [
-    `${formatLink('Project Coverage', '/')}  ${formatDiffStats(report[ALL_FILES_PATH], priorReport[ALL_FILES_PATH])}`
+    formatDiffStats(report[ALL_FILES_PATH], priorReport[ALL_FILES_PATH])
   ]
 
   function printTable (rows) {
