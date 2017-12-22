@@ -93,7 +93,7 @@ exports.format = function (report, priorReport = {}, baseUrl = undefined) {
     const folderPriorReport = priorReport[path]
     const { htmlPath } = folderReport
     const link = htmlPath + 'index.html'
-    if (folderPriorReport && getPercent(folderReport) !== getPercent(folderPriorReport)) {
+    if (!folderPriorReport || getPercent(folderReport) !== getPercent(folderPriorReport)) {
       changedRows.push({
         label: path,
         link,
@@ -102,7 +102,7 @@ exports.format = function (report, priorReport = {}, baseUrl = undefined) {
       })
       for (const file of Object.keys(folderReport.files)) {
         const fileStats = folderReport.files[file]
-        const priorFileStats = folderPriorReport.files[file]
+        const priorFileStats = folderPriorReport && folderPriorReport.files[file]
         if (priorFileStats
             ? getPercent(fileStats) !== getPercent(priorFileStats)
             : getPercent(fileStats) < 100

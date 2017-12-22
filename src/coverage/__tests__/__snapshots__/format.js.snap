@@ -63,7 +63,14 @@ src/    10.00% 💔
 
 exports[`format formats report 1`] = `
 Object {
-  "changed": "",
+  "changed": "<pre>
+src/                    18.57% 💔
+  bot.js                 0.00% ❌
+  cli.js                 0.00% ❌
+  format-coverage.js    36.13% 💔
+  github-comment.js      0.00% ❌
+  parse-coverage.js     13.64% 💔
+</pre>",
   "folders": "<pre>
 src/    18.57% 💔
 </pre>",
@@ -73,7 +80,14 @@ src/    18.57% 💔
 
 exports[`format formats report with links 1`] = `
 Object {
-  "changed": "",
+  "changed": "<pre>
+<a href=\\"http://example.com/artifacts/index.html\\">src/                </a>    18.57% 💔
+<a href=\\"http://example.com/artifacts/bot.js.html\\">  bot.js            </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/cli.js.html\\">  cli.js            </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/format-coverage.js.html\\">  format-coverage.js</a>    36.13% 💔
+<a href=\\"http://example.com/artifacts/github-comment.js.html\\">  github-comment.js </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/parse-coverage.js.html\\">  parse-coverage.js </a>    13.64% 💔
+</pre>",
   "folders": "<pre>
 <a href=\\"http://example.com/artifacts/index.html\\">src/</a>    18.57% 💔
 </pre>",
@@ -83,7 +97,14 @@ Object {
 
 exports[`format formats report with multiple folders links 1`] = `
 Object {
-  "changed": "",
+  "changed": "<pre>
+<a href=\\"http://example.com/artifacts/index.html\\">src/               </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/bot.js.html\\">  bot.js           </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/cli.js.html\\">  cli.js           </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/curl.js.html\\">  curl.js          </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/github-comment.js.html\\">  github-comment.js</a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/coverage/index.html\\">src/coverage/      </a>   100.00% ✅
+</pre>",
   "folders": "<pre>
 <a href=\\"http://example.com/artifacts/index.html\\">src/         </a>     0.00% ❌
 <a href=\\"http://example.com/artifacts/coverage/index.html\\">src/coverage/</a>   100.00% ✅
