@@ -1,6 +1,7 @@
 const { readFileSync } = require('fs')
 const { relative, dirname, basename } = require('path')
 const libCoverage = require('istanbul-lib-coverage')
+const Path = require('istanbul-lib-report/lib/path')
 
 function calculateCoverage (stats) {
   // { lines: { total: 615, covered: 281, skipped: 0, pct: 45.69 },
@@ -32,10 +33,15 @@ exports.coverageJsonToReport = function (json, base) {
   const report = { '*': {} }
 
   const summaries = {}
+  let commonRoot
 
   // inspect and summarize all file coverage objects in the map
   for (const file of map.files()) {
     const folder = relative(base, dirname(file)) + '/'
+
+    const path = new Path(folder)
+    commonRoot = commonRoot ? commonRoot.commonPrefixPath(path) : path
+
     if (!summaries[folder]) {
       summaries[folder] = libCoverage.createCoverageSummary()
       report[folder] = { files: {} }
@@ -46,12 +52,17 @@ exports.coverageJsonToReport = function (json, base) {
 
     report[folder].files[basename(file)] = getSimpleCoverage(fileSummary)
   }
+  report['*'] = getSimpleCoverage(globalSummary)
+
+  const htmlRoot = commonRoot.toString() + '/'
+  report['*'].htmlRoot = htmlRoot
+  const commonRootLength = htmlRoot.length
 
   for (const folder of Object.keys(summaries)) {
     Object.assign(report[folder], getSimpleCoverage(summaries[folder]))
+    report[folder].htmlPath = folder.substring(commonRootLength)
   }
 
-  report['*'] = getSimpleCoverage(globalSummary)
   return report
 }
 

@@ -15,6 +15,14 @@ describe('format', () => {
     )).toMatchSnapshot()
   })
 
+  it('formats report with multiple folders links', () => {
+    expect(format(
+      require('./basic-report4.json'),
+      undefined,
+      'http://example.com/artifacts'
+    )).toMatchSnapshot()
+  })
+
   it('formats delta report', () => {
     expect(format(
       require('./basic-report2.json'),

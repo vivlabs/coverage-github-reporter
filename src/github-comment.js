@@ -21,11 +21,10 @@ exports.postComment = function postComment ({
   }
 
   const result = JSON.parse(bot.comment(`
-<a>
-  <strong><a href="${bot.artifactUrl(`/${coverageHtmlRoot}/index.html`)}">Code Coverage</a></strong> 
-  from Circle CI <a href="${process.env.CIRCLE_BUILD_URL}">build ${process.env.CIRCLE_BUILD_NUM}</a>
+**[Code Coverage](${bot.artifactUrl(`/${coverageHtmlRoot}/index.html`)})** 
+  from Circle CI [build ${process.env.CIRCLE_BUILD_NUM}](${process.env.CIRCLE_BUILD_URL})
   ${priorBuild
-    ? `(compared to <a href="${process.env.CIRCLE_BUILD_URL.replace(/\/\d+$/, `/${priorBuild}`)}">build ${priorBuild}</a> of <code>${branch}</code> branch)`
+    ? `(compared to [build ${priorBuild}](${process.env.CIRCLE_BUILD_URL.replace(/\/\d+$/, `/${priorBuild}`)}) of \`${branch}\` branch)`
     : ''}
 
 ${format(coverage, priorCoverage, bot.artifactUrl(`/${coverageHtmlRoot}`))}

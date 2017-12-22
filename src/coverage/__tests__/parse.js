@@ -14,4 +14,7 @@ describe('parseFile', () => {
   it('parses 3', () => {
     expect(parseFile('/root/app', resolve(__dirname, 'coverage-final3.json'))).toMatchSnapshot()
   })
+  it('parses 4', () => {
+    expect(parseFile('/root/app', resolve(__dirname, 'coverage-final4.json'))).toMatchSnapshot()
+  })
 })

@@ -17,13 +17,16 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-     "*.js": ["standard"]
+    "*.js": [
+      "standard"
+    ]
   },
   "dependencies": {
     "args": "^3.0.8",
     "circle-github-bot": "^0.4.0",
     "cross-env": "^5.1.1",
     "istanbul-lib-coverage": "^1.1.1",
+    "istanbul-lib-report": "^1.1.2",
     "pad": "^2.0.3"
   },
   "devDependencies": {
