@@ -85,9 +85,9 @@ Bot.prototype.getPriorBuild = function (branch, coverageJsonFilename) {
         break
       }
       const artifact = artifacts.find(({ path }) => path === coverageJsonFilename)
-      if (artifact) {
+      if (!artifact) {
         console.error(`Could not find "${coverageJsonFilename}" in artifacts`)
-        console.log(artifacts)
+        console.log('Available artifacts:', artifacts.map(({ path }) => path))
         break
       }
       const coverageJson = this.getJsonArtifact(artifact.url)
