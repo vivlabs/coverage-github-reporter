@@ -59,15 +59,14 @@ Bot.prototype.getBaseBranch = function (defaultBaseBranch) {
 }
 
 Bot.prototype.getPriorBuild = function (branch, coverageJsonFilename) {
-  const workflowJob = process.env.CIRCLE_JOB
   // Get latest builds for branch
   const baseBranchBuilds = this.latestBranchBuilds(branch, BUILD_RETRIEVAL_LIMIT)
   if (baseBranchBuilds) {
     console.log(`Got ${baseBranchBuilds.length} build(s) for ${branch}`)
     for (const build of baseBranchBuilds) {
       const buildNum = build.build_num
-      if (workflowJob) {
-        if (!build.build_parameters || build.build_parameters.CIRCLE_JOB !== workflowJob) {
+      if (process.env.CIRCLE_WORKFLOW_ID) {
+        if (!build.build_parameters || build.build_parameters.CIRCLE_JOB !== process.env.CIRCLE_JOB) {
           console.log(`Build ${buildNum} doesn't match workflow job`)
           // Different job…
           continue
