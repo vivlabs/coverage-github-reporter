@@ -13,14 +13,14 @@ exports[`formatComment formats with changes 1`] = `
 <a href=\\"http://example.com/artifacts/new-file.js.html\\">  new-file.js       </a>     0.00% ❌
 </pre>
 <details>
-<summary>Folder Coverage</summary>
+<summary><strong>🗂 Folder Coverage</strong></summary>
 <pre>
 <a href=\\"http://example.com/artifacts/index.html\\">src/</a>    10.00% 💔
 </pre>
 </details>
 <p>
 
-Circle CI [build 2](http://example.com/build/2) (compared to [build 1](http://example.com/build/1) of \`master\` branch) — [coverage-github-reporter](https://github.com/vivlabs/coverage-github-reporter)"
+From **Circle CI [build 2](http://example.com/build/2)** compared to [build 1](http://example.com/build/1) (from \`master\` branch) – 🤖[coverage-github-reporter](https://github.com/vivlabs/coverage-github-reporter)"
 `;
 
 exports[`formatComment formats with no changes 1`] = `
@@ -28,7 +28,7 @@ exports[`formatComment formats with no changes 1`] = `
 **[Code Coverage](http://example.com/artifacts/index.html): 58.66% 💛** 
 
 <details>
-<summary>Folder Coverage</summary>
+<summary><strong>🗂 Folder Coverage</strong></summary>
 <pre>
 <a href=\\"http://example.com/artifacts/index.html\\">src/         </a>     0.00% ❌
 <a href=\\"http://example.com/artifacts/coverage/index.html\\">src/coverage/</a>   100.00% ✅
@@ -36,5 +36,21 @@ exports[`formatComment formats with no changes 1`] = `
 </details>
 <p>
 
-Circle CI [build 2](http://example.com/build/2) (compared to [build 1](http://example.com/build/1) of \`master\` branch) — [coverage-github-reporter](https://github.com/vivlabs/coverage-github-reporter)"
+From **Circle CI [build 2](http://example.com/build/2)** compared to [build 1](http://example.com/build/1) (from \`master\` branch) – 🤖[coverage-github-reporter](https://github.com/vivlabs/coverage-github-reporter)"
+`;
+
+exports[`formatComment formats with no prior build 1`] = `
+"
+**[Code Coverage](http://example.com/artifacts/index.html): 58.66% 💛** 
+
+<details>
+<summary><strong>🗂 Folder Coverage</strong></summary>
+<pre>
+<a href=\\"http://example.com/artifacts/index.html\\">src/         </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/coverage/index.html\\">src/coverage/</a>   100.00% ✅
+</pre>
+</details>
+<p>
+
+From **Circle CI [build 2](http://example.com/build/2)**  – 🤖[coverage-github-reporter](https://github.com/vivlabs/coverage-github-reporter)"
 `;

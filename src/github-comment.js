@@ -20,14 +20,14 @@ exports.formatComment = function ({
 **[Code Coverage](${baseArtifactUrl}/index.html): ${status}** 
 ${changed}
 <details>
-<summary>Folder Coverage</summary>
+<summary><strong>🗂 Folder Coverage</strong></summary>
 ${folders}
 </details>
 <p>
 
-Circle CI [build ${buildNum}](${buildUrl}) ${priorBuildNum
-    ? `(compared to [build ${priorBuildNum}](${priorBuildUrl}) of \`${branch}\` branch)`
-    : ''} — [coverage-github-reporter](https://github.com/vivlabs/coverage-github-reporter)`
+From **Circle CI [build ${buildNum}](${buildUrl})** ${priorBuildNum
+    ? `compared to [build ${priorBuildNum}](${priorBuildUrl}) (from \`${branch}\` branch)`
+    : ''} – 🤖[coverage-github-reporter](https://github.com/vivlabs/coverage-github-reporter)`
 }
 
 exports.postComment = function postComment ({

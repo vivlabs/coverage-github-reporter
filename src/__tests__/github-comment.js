@@ -3,6 +3,23 @@
 const { formatComment } = require('../github-comment')
 
 describe('formatComment', () => {
+  it('formats with no prior build', () => {
+    expect(formatComment({
+      formatted: {
+        'changed': '',
+        'folders': `<pre>
+<a href="http://example.com/artifacts/index.html">src/         </a>     0.00% ❌
+<a href="http://example.com/artifacts/coverage/index.html">src/coverage/</a>   100.00% ✅
+</pre>`,
+        'status': '58.66% 💛'
+      },
+      baseArtifactUrl: 'http://example.com/artifacts',
+      buildNum: 2,
+      buildUrl: 'http://example.com/build/2',
+      branch: 'master'
+    })).toMatchSnapshot()
+  })
+
   it('formats with no changes', () => {
     expect(formatComment({
       formatted: {
@@ -21,6 +38,7 @@ describe('formatComment', () => {
       branch: 'master'
     })).toMatchSnapshot()
   })
+
   it('formats with changes', () => {
     expect(formatComment({
       formatted: {
