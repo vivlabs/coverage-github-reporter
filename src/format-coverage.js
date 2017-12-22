@@ -50,7 +50,7 @@ const getDeltaEmoji = (delta, percent) => {
   }
 }
 
-const getPercent = (stats) => stats ? stats.percent : 0
+const getPercent = (stats) => stats.percent
 
 const formatPercent = (percent) =>
   `${pad(7, percent.toFixed(2))}% ` +
@@ -78,34 +78,12 @@ exports.format = function (report, priorReport = {}, baseUrl = undefined) {
     if (!baseUrl) {
       return name
     }
-    if (path === '/') {
-      return `<a href="${baseUrl}/index.html">${name}</a>`
-    }
     if (path.endsWith('/')) {
       return `<a href="${baseUrl}/${path}index.html">${name}</a>`
     }
     return `<a href="${baseUrl}/${path}.html">${name}</a>`
   }
 
-  const addChangedFileRows = (rows, folder, stats, priorStats) => {
-    if (priorStats && stats.files && getPercent(priorStats) !== getPercent(stats)) {
-      for (const path of Object.keys(stats.files)) {
-        const fileStats = stats.files[path]
-        const priorFileStats = priorStats.files[path]
-        if (priorFileStats
-          ? getPercent(fileStats) !== getPercent(priorFileStats)
-          : getPercent(fileStats) < 100
-        ) {
-          rows.push({
-            label: '  ' + basename(path),
-            path: join(folder, path),
-            stats: fileStats,
-            priorStats: priorFileStats
-          })
-        }
-      }
-    }
-  }
   const changedRows = []
   const allRows = []
 
@@ -123,7 +101,21 @@ exports.format = function (report, priorReport = {}, baseUrl = undefined) {
         stats: folderReport,
         priorStats: folderPriorReport
       })
-      addChangedFileRows(changedRows, path, folderReport, folderPriorReport)
+      for (const file of Object.keys(folderReport.files)) {
+        const fileStats = folderReport.files[file]
+        const priorFileStats = folderPriorReport.files[file]
+        if (priorFileStats
+            ? getPercent(fileStats) !== getPercent(priorFileStats)
+            : getPercent(fileStats) < 100
+        ) {
+          changedRows.push({
+            label: '  ' + basename(file),
+            path: join(path, file),
+            stats: fileStats,
+            priorStats: priorFileStats
+          })
+        }
+      }
     }
 
     allRows.push({
