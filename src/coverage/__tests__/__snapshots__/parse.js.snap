@@ -99,7 +99,7 @@ Object {
 exports[`parseFile parses 4 1`] = `
 Object {
   "*": Object {
-    "htmlRoot": "src/",
+    "htmlRoot": "",
     "percent": 58.6637239165329,
   },
   "src/": Object {
@@ -117,8 +117,47 @@ Object {
         "percent": 0,
       },
     },
+    "htmlPath": "src/",
+    "percent": 0,
+  },
+  "src/coverage/": Object {
+    "files": Object {
+      "format.js": Object {
+        "percent": 100,
+      },
+      "parse.js": Object {
+        "percent": 100,
+      },
+    },
+    "htmlPath": "src/coverage/",
+    "percent": 100,
+  },
+}
+`;
+
+exports[`parseFile parses 5 1`] = `
+Object {
+  "*": Object {
+    "htmlRoot": "src/",
+    "percent": 0,
+  },
+  "src/": Object {
+    "files": Object {
+      "bot.js": Object {
+        "percent": 0,
+      },
+    },
     "htmlPath": "",
     "percent": 0,
+  },
+}
+`;
+
+exports[`parseFile parses 6 1`] = `
+Object {
+  "*": Object {
+    "htmlRoot": "src/",
+    "percent": 58.6637239165329,
   },
   "src/coverage/": Object {
     "files": Object {
@@ -131,6 +170,24 @@ Object {
     },
     "htmlPath": "coverage/",
     "percent": 100,
+  },
+  "src/folder/": Object {
+    "files": Object {
+      "bot.js": Object {
+        "percent": 0,
+      },
+      "cli.js": Object {
+        "percent": 0,
+      },
+      "curl.js": Object {
+        "percent": 0,
+      },
+      "github-comment.js": Object {
+        "percent": 0,
+      },
+    },
+    "htmlPath": "folder/",
+    "percent": 0,
   },
 }
 `;

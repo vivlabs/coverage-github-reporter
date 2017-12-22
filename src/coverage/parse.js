@@ -38,7 +38,6 @@ exports.coverageJsonToReport = function (json, base) {
   // inspect and summarize all file coverage objects in the map
   for (const file of map.files()) {
     const folder = relative(base, dirname(file)) + '/'
-
     const path = new Path(folder)
     commonRoot = commonRoot ? commonRoot.commonPrefixPath(path) : path
 
@@ -54,11 +53,17 @@ exports.coverageJsonToReport = function (json, base) {
   }
   report['*'] = getSimpleCoverage(globalSummary)
 
-  const htmlRoot = commonRoot.toString() + '/'
-  report['*'].htmlRoot = htmlRoot
-  const commonRootLength = htmlRoot.length
+  const folders = Object.keys(summaries)
 
-  for (const folder of Object.keys(summaries)) {
+  while (folders.length > 1 && summaries[commonRoot.toString() + '/']) {
+    commonRoot = commonRoot.parent()
+  }
+
+  const htmlRoot = commonRoot.toString()
+  report['*'].htmlRoot = htmlRoot ? htmlRoot + '/' : ''
+  const commonRootLength = htmlRoot ? htmlRoot.length + 1 : 0
+
+  for (const folder of folders) {
     Object.assign(report[folder], getSimpleCoverage(summaries[folder]))
     report[folder].htmlPath = folder.substring(commonRootLength)
   }
