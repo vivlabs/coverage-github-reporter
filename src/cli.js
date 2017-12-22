@@ -22,7 +22,6 @@ try {
     coverageHtmlRoot: coverageHtml,
     defaultBaseBranch: branch
   }
-  console.log('Running with', params)
   const url = postComment(params)
   console.log('Posted to ', url)
 } catch (err) {

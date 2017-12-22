@@ -19,7 +19,7 @@ if (!process.env.CIRCLE_ARTIFACTS) {
 //
 // In theory we could get N + 1 builds (where N is the max number of steps), but it'd have to be
 // updated every time we add a workflow step.
-const WORKFLOW_BUILD_RETRIEVAL_LIMIT = 30
+const BUILD_RETRIEVAL_LIMIT = 30
 
 Bot.prototype.getPullRequest = function () {
   return JSON.parse(curl(this.githubRepoUrl(`pulls/${this.env.prNumber}`)))
@@ -28,7 +28,7 @@ Bot.prototype.circleProjectUrl = function (path) {
   const project = `${process.env.CIRCLE_PROJECT_USERNAME}/${process.env.CIRCLE_PROJECT_REPONAME}`
   return `https://${process.env.CIRCLE_CI_API_TOKEN}:@circleci.com/api/v1.1/project/github/${project}/${path}`
 }
-Bot.prototype.latestBranchBuilds = function (branch, count = 1) {
+Bot.prototype.latestBranchBuilds = function (branch, count = 30) {
   return JSON.parse(curl(this.circleProjectUrl(`tree/${branch}?limit=${count}`)))
 }
 Bot.prototype.artifacts = function (buildNum) {
@@ -61,38 +61,44 @@ Bot.prototype.getBaseBranch = function (defaultBaseBranch) {
 Bot.prototype.getPriorBuild = function (branch, coverageJsonFilename) {
   const workflowJob = process.env.CIRCLE_JOB
   // Get latest builds for branch
-  const baseBranchBuilds = this.latestBranchBuilds(branch, workflowJob ? WORKFLOW_BUILD_RETRIEVAL_LIMIT : 1)
+  const baseBranchBuilds = this.latestBranchBuilds(branch, BUILD_RETRIEVAL_LIMIT)
   if (baseBranchBuilds) {
+    console.log(`Got ${baseBranchBuilds.length} build(s) for ${branch}`)
     for (const build of baseBranchBuilds) {
       const buildNum = build.build_num
       if (workflowJob) {
         if (!build.build_parameters || build.build_parameters.CIRCLE_JOB !== workflowJob) {
+          console.log(`Build ${buildNum} doesn't match workflow job`)
           // Different job…
           continue
         }
       }
       if (String(buildNum) === process.env.CIRCLE_BUILD_NUM) {
+        console.log(`Build ${buildNum} is self`)
         // Don't want to compare against self
         continue
       }
-      console.log('Base branch build:', buildNum)
+      console.log(`Comparing to build ${buildNum}`)
       // Get artifact
       const artifacts = this.artifacts(buildNum)
-      if (artifacts) {
-        console.log('Got artifacts')
-        const artifact = artifacts.find(({ path }) => path === coverageJsonFilename)
-        if (artifact) {
-          const coverageJson = this.getJsonArtifact(artifact.url)
-          if (coverageJson) {
-            const base = process.env.CIRCLE_WORKING_DIRECTORY.replace(/~\//, process.env.HOME + '/')
-            const priorCoverage = coverageJsonToReport(coverageJson, base)
-            const priorBuild = buildNum
-            console.log(`Loaded prior coverage from build ${priorBuild} artifacts (relative to ${base})`)
-            return { priorCoverage, priorBuild }
-          }
-        }
+      if (!artifacts) {
+        console.error(`No artifacts found for build ${buildNum}`)
+        break
       }
-      break
+      const artifact = artifacts.find(({ path }) => path === coverageJsonFilename)
+      if (artifact) {
+        console.error(`Could not find "${coverageJsonFilename}" in artifacts`)
+        break
+      }
+      const coverageJson = this.getJsonArtifact(artifact.url)
+      if (!coverageJson) {
+        throw new Error(`Could not load artifact from ${artifact.url}`)
+      }
+      const base = process.env.CIRCLE_WORKING_DIRECTORY.replace(/~\//, process.env.HOME + '/')
+      const priorCoverage = coverageJsonToReport(coverageJson, base)
+      const priorBuild = buildNum
+      console.log(`Loaded prior coverage from build ${priorBuild} artifacts`)
+      return { priorCoverage, priorBuild }
     }
   }
   return {}
