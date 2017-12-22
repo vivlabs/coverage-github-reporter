@@ -52,25 +52,25 @@ const getDeltaEmoji = (delta, percent) => {
 
 const getPercent = (stats) => stats.percent
 
-const formatPercent = (percent) =>
-  `${pad(7, percent.toFixed(2))}% ` +
+const formatPercent = (percent, padding) =>
+  `${pad(padding, percent.toFixed(2))}% ` +
   `${getEmoji(percent)} `
 
-const formatPercentDelta = (percent, priorPercent) => {
+const formatPercentDelta = (percent, priorPercent, padding) => {
   const delta = percent - priorPercent
-  return `${pad(7, (delta > 0 ? '+' : '') + delta.toFixed(2))}% ${getDeltaEmoji(delta, percent)}`
+  return `${pad(padding, (delta > 0 ? '+' : '') + delta.toFixed(2))}% ${getDeltaEmoji(delta, percent)}`
 }
 
-const formatDiffStats = (stats, priorStats) => {
+const formatDiffStats = (stats, priorStats, padding = 7) => {
   const percent = getPercent(stats)
   if (!priorStats) {
-    return formatPercent(percent)
+    return formatPercent(percent, padding)
   }
   const oldPercent = getPercent(priorStats)
   if (percent === oldPercent) {
-    return `${formatPercent(percent)} ${pad(7, ' (no change)')}`
+    return `${formatPercent(percent, padding)} ${pad(padding, '(no change)')}`
   }
-  return `${formatPercent(percent)} ${formatPercentDelta(percent, oldPercent)}`
+  return `${formatPercent(percent, padding)} ${formatPercentDelta(percent, oldPercent, padding)}`
 }
 
 exports.format = function (report, priorReport = {}, baseUrl = undefined) {
@@ -124,11 +124,8 @@ exports.format = function (report, priorReport = {}, baseUrl = undefined) {
     })
   }
 
-  const comment = [
-    `**${formatDiffStats(report[ALL_FILES_PATH], priorReport[ALL_FILES_PATH])}**`
-  ]
-
-  function printTable (rows) {
+  function getTable (rows) {
+    const comment = []
     if (rows.length > 0) {
       const maxLabelLength = Math.max.apply(Math.max, rows.map(({ label }) => label.length))
       comment.push('<pre>')
@@ -137,14 +134,12 @@ exports.format = function (report, priorReport = {}, baseUrl = undefined) {
       }
       comment.push('</pre>')
     }
+    return comment.join('\n')
   }
 
-  printTable(changedRows)
-
-  comment.push('<details>')
-  comment.push('<summary>Folder Coverage</summary>')
-  printTable(allRows)
-  comment.push('</details>')
-
-  return comment.join('\n')
+  return {
+    status: formatDiffStats(report[ALL_FILES_PATH], priorReport[ALL_FILES_PATH], 0),
+    changed: getTable(changedRows),
+    folders: getTable(allRows)
+  }
 }
