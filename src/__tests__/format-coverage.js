@@ -22,6 +22,20 @@ describe('format', () => {
     )).toMatchSnapshot()
   })
 
+  it('formats delta report 2', () => {
+    expect(format(
+      require('./basic-report3.json'),
+      require('./basic-report2.json')
+    )).toMatchSnapshot()
+  })
+
+  it('formats delta report with no changes', () => {
+    expect(format(
+      require('./basic-report2.json'),
+      require('./basic-report2.json')
+    )).toMatchSnapshot()
+  })
+
   it('formats delta report with links', () => {
     expect(format(
       require('./basic-report2.json'),
