@@ -54,7 +54,7 @@ const getPercent = (stats) => stats.percent
 
 const formatPercent = (percent, padding) =>
   `${pad(padding, percent.toFixed(2))}% ` +
-  `${getEmoji(percent)} `
+  `${getEmoji(percent)}`
 
 const formatPercentDelta = (percent, priorPercent, padding) => {
   const delta = percent - priorPercent
