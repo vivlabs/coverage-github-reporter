@@ -22,8 +22,10 @@ src/    10.00% 💔
 exports[`format formats delta report 2 1`] = `
 "Project Coverage    18.57% 💔   (no change)
 <pre>
-src/        20.00% 💔   +10.00% 🙂
-  bot.js    80.00% 💚   -20.00% 😡
+src/                   20.00% 💔   +10.00% 🙂
+  bot.js               80.00% 💚   -20.00% 😡
+  github-comment.js    25.00% 💔   +15.00% 😀
+  parse-coverage.js    80.00% 💚   +80.00% 😍
 </pre>
 <details>
 <summary>Folder Coverage</summary>

@@ -1,5 +1,5 @@
 const { readFileSync } = require('fs')
-const { resolve, relative, dirname, basename } = require('path')
+const { relative, dirname, basename } = require('path')
 const libCoverage = require('istanbul-lib-coverage')
 
 function calculateCoverage (stats) {
