@@ -1,7 +1,7 @@
 // circle-github-bot is pretty gnarly, ideally we'll swap it out
 const Bot = require('circle-github-bot')
 const { curl } = require('./curl')
-const { coverageJsonToReport } = require('./parse-coverage')
+const { coverageJsonToReport } = require('./coverage/parse')
 
 // Workaround for circle-github-bot failing if environment variables are not found
 if (!process.env.CI_PULL_REQUEST) {

@@ -2,7 +2,7 @@
 
 const { resolve } = require('path')
 
-const { parseFile } = require('../parse-coverage')
+const { parseFile } = require('../parse')
 
 describe('parseFile', () => {
   it('parses', () => {

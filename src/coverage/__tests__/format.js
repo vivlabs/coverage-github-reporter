@@ -1,6 +1,6 @@
 /* eslint-env jest */
 
-const { format } = require('../format-coverage')
+const { format } = require('../format')
 
 describe('format', () => {
   it('formats report', () => {

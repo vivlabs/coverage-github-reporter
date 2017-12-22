@@ -1,7 +1,7 @@
 const { resolve } = require('path')
 const { Bot } = require('./bot')
-const { parseFile } = require('./parse-coverage')
-const { format } = require('./format-coverage')
+const { parseFile } = require('./coverage/parse')
+const { format } = require('./coverage/format')
 
 exports.postComment = function postComment ({
   coverageJsonFilename = 'coverage/coverage-final.json',
