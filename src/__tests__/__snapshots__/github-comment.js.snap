@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`formatComment formats with changes 1`] = `
+"
+**[Code Coverage](http://example.com/artifacts/index.html): 30.00% 💔 +11.43% 😀** 
+<pre>
+<a href=\\"http://example.com/artifacts/index.html\\">src/                </a>    10.00% 💔   -8.57% 😭
+<a href=\\"http://example.com/artifacts/bot.js.html\\">  bot.js            </a>   100.00% ✅ +100.00% 🎉
+<a href=\\"http://example.com/artifacts/cli.js.html\\">  cli.js            </a>    60.00% 💛  +60.00% 😍
+<a href=\\"http://example.com/artifacts/format-coverage.js.html\\">  format-coverage.js</a>    35.00% 💔   -1.13% 😥
+<a href=\\"http://example.com/artifacts/github-comment.js.html\\">  github-comment.js </a>    10.00% 💔  +10.00% 🙂
+<a href=\\"http://example.com/artifacts/parse-coverage.js.html\\">  parse-coverage.js </a>     0.00% ❌  -13.64% 😱
+<a href=\\"http://example.com/artifacts/new-file.js.html\\">  new-file.js       </a>     0.00% ❌
+</pre>
+<details>
+<summary><strong>🗂 Folder Coverage</strong></summary>
+<pre>
+<a href=\\"http://example.com/artifacts/index.html\\">src/</a>    10.00% 💔
+</pre>
+</details>
+<p>
+
+From **Circle CI [build 2](http://example.com/build/2)** compared to [build 1](http://example.com/build/1) (from \`master\` branch) – 🤖[coverage-github-reporter](https://github.com/vivlabs/coverage-github-reporter)"
+`;
+
+exports[`formatComment formats with no changes 1`] = `
+"
+**[Code Coverage](http://example.com/artifacts/index.html): 58.66% 💛** 
+
+<details>
+<summary><strong>🗂 Folder Coverage</strong></summary>
+<pre>
+<a href=\\"http://example.com/artifacts/index.html\\">src/         </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/coverage/index.html\\">src/coverage/</a>   100.00% ✅
+</pre>
+</details>
+<p>
+
+From **Circle CI [build 2](http://example.com/build/2)** compared to [build 1](http://example.com/build/1) (from \`master\` branch) – 🤖[coverage-github-reporter](https://github.com/vivlabs/coverage-github-reporter)"
+`;
+
+exports[`formatComment formats with no prior build 1`] = `
+"
+**[Code Coverage](http://example.com/artifacts/index.html): 58.66% 💛** 
+
+<details>
+<summary><strong>🗂 Folder Coverage</strong></summary>
+<pre>
+<a href=\\"http://example.com/artifacts/index.html\\">src/         </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/coverage/index.html\\">src/coverage/</a>   100.00% ✅
+</pre>
+</details>
+<p>
+
+From **Circle CI [build 2](http://example.com/build/2)**  – 🤖[coverage-github-reporter](https://github.com/vivlabs/coverage-github-reporter)"
+`;

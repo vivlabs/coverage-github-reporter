@@ -1,6 +1,34 @@
+const { resolve } = require('path')
 const { Bot } = require('./bot')
-const { parseFile } = require('./parse-coverage')
-const { format } = require('./format-coverage')
+const { parseFile } = require('./coverage/parse')
+const { format } = require('./coverage/format')
+
+exports.formatComment = function ({
+  formatted: {
+    status,
+    changed,
+    folders
+  },
+  baseArtifactUrl,
+  buildNum,
+  buildUrl,
+  priorBuildNum,
+  priorBuildUrl,
+  branch
+}) {
+  return `
+**[Code Coverage](${baseArtifactUrl}/index.html): ${status}** 
+${changed}
+<details>
+<summary><strong>🗂 Folder Coverage</strong></summary>
+${folders}
+</details>
+<p>
+
+From **Circle CI [build ${buildNum}](${buildUrl})** ${priorBuildNum
+    ? `compared to [build ${priorBuildNum}](${priorBuildUrl}) (from \`${branch}\` branch)`
+    : ''} – 🤖[coverage-github-reporter](https://github.com/vivlabs/coverage-github-reporter)`
+}
 
 exports.postComment = function postComment ({
   coverageJsonFilename = 'coverage/coverage-final.json',
@@ -10,7 +38,7 @@ exports.postComment = function postComment ({
 }) {
   const bot = Bot.create()
 
-  const coverage = parseFile(root)
+  const coverage = parseFile(root, resolve(root, coverageJsonFilename))
 
   const branch = bot.getBaseBranch(defaultBaseBranch)
   const { priorCoverage, priorBuild } = bot.getPriorBuild(branch, coverageJsonFilename)
@@ -19,15 +47,17 @@ exports.postComment = function postComment ({
     console.log(`No prior coverage found`)
   }
 
-  const result = JSON.parse(bot.comment(`
-<a>
-  <strong><a href="${bot.artifactUrl(`/${coverageHtmlRoot}/index.html`)}">Code Coverage</a></strong> 
-  from Circle CI <a href="${process.env.CIRCLE_BUILD_URL}">build ${process.env.CIRCLE_BUILD_NUM}</a>
-  ${priorBuild
-    ? `(compared to <a href="${process.env.CIRCLE_BUILD_URL.replace(/\/\d+$/, `/${priorBuild}`)}">build ${priorBuild}</a> of <code>${branch}</code> branch)`
-    : ''}
-</p>
-${format(coverage, priorCoverage, bot.artifactUrl(`/${coverageHtmlRoot}`))}
-`))
+  const baseArtifactUrl = bot.artifactUrl(`/${coverageHtmlRoot}`)
+  const text = exports.formatComment({
+    formatted: format(coverage, priorCoverage, baseArtifactUrl),
+    baseArtifactUrl,
+    buildNum: process.env.CIRCLE_BUILD_NUM,
+    buildUrl: process.env.CIRCLE_BUILD_URL,
+    priorBuildNum: priorBuild,
+    priorBuildUrl: process.env.CIRCLE_BUILD_URL.replace(/\/\d+$/, `/${priorBuild}`),
+    branch
+  })
+
+  const result = JSON.parse(bot.comment(text))
   return result && result.html_url
 }

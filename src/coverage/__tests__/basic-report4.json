@@ -1,0 +1,36 @@
+{
+  "*": {
+    "htmlRoot": "src/",
+    "percent": 58.6637239165329
+  },
+  "src/": {
+    "files": {
+      "bot.js": {
+        "percent": 0
+      },
+      "cli.js": {
+        "percent": 0
+      },
+      "curl.js": {
+        "percent": 0
+      },
+      "github-comment.js": {
+        "percent": 0
+      }
+    },
+    "htmlPath": "",
+    "percent": 0
+  },
+  "src/coverage/": {
+    "files": {
+      "format.js": {
+        "percent": 100
+      },
+      "parse.js": {
+        "percent": 100
+      }
+    },
+    "htmlPath": "coverage/",
+    "percent": 100
+  }
+}

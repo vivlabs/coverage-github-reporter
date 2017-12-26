@@ -40,11 +40,11 @@ jobs:
           path: coverage
           destination: coverage
       - run:
-          name: Post artifact comment to GitHub
+          name: Post Coverage Comment to GitHub
           command: |
             node src/cli.js
       - deploy:
-          name: npm publish (pushed tags only)
+          name: npm publish (if applicable)
           command: .circleci/deploy.sh
 
 deployment:

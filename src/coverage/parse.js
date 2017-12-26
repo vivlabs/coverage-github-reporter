@@ -1,6 +1,7 @@
 const { readFileSync } = require('fs')
-const { resolve, relative, dirname, basename } = require('path')
+const { relative, dirname, basename } = require('path')
 const libCoverage = require('istanbul-lib-coverage')
+const Path = require('istanbul-lib-report/lib/path')
 
 function calculateCoverage (stats) {
   // { lines: { total: 615, covered: 281, skipped: 0, pct: 45.69 },
@@ -8,7 +9,7 @@ function calculateCoverage (stats) {
   //   functions: { total: 169, covered: 76, skipped: 0, pct: 44.97 },
   //   branches: { total: 308, covered: 88, skipped: 0, pct: 28.57 } } }
   if (stats.total === 0) {
-    return 1
+    return 100
   }
   return (stats.covered + stats.skipped) / stats.total * 100
 }
@@ -32,10 +33,14 @@ exports.coverageJsonToReport = function (json, base) {
   const report = { '*': {} }
 
   const summaries = {}
+  let commonRoot
 
   // inspect and summarize all file coverage objects in the map
   for (const file of map.files()) {
     const folder = relative(base, dirname(file)) + '/'
+    const path = new Path(folder)
+    commonRoot = commonRoot ? commonRoot.commonPrefixPath(path) : path
+
     if (!summaries[folder]) {
       summaries[folder] = libCoverage.createCoverageSummary()
       report[folder] = { files: {} }
@@ -46,16 +51,27 @@ exports.coverageJsonToReport = function (json, base) {
 
     report[folder].files[basename(file)] = getSimpleCoverage(fileSummary)
   }
+  report['*'] = getSimpleCoverage(globalSummary)
 
-  for (const folder of Object.keys(summaries)) {
-    Object.assign(report[folder], getSimpleCoverage(summaries[folder]))
+  const folders = Object.keys(summaries)
+
+  while (folders.length > 1 && summaries[commonRoot.toString() + '/']) {
+    commonRoot = commonRoot.parent()
   }
 
-  report['*'] = getSimpleCoverage(globalSummary)
+  const htmlRoot = commonRoot.toString()
+  report['*'].htmlRoot = htmlRoot ? htmlRoot + '/' : ''
+  const commonRootLength = htmlRoot ? htmlRoot.length + 1 : 0
+
+  for (const folder of folders) {
+    Object.assign(report[folder], getSimpleCoverage(summaries[folder]))
+    report[folder].htmlPath = folder.substring(commonRootLength)
+  }
+
   return report
 }
 
-exports.parseFile = function (base, coveragePath = resolve(base, 'coverage/coverage-final.json')) {
+exports.parseFile = function (base, coveragePath) {
   const json = JSON.parse(readFileSync(coveragePath, 'utf8'))
   return exports.coverageJsonToReport(json, base)
 }

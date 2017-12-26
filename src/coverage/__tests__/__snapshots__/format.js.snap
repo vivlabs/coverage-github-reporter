@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`format formats delta report 1`] = `
+Object {
+  "changed": "<pre>
+src/                    10.00% 💔   -8.57% 😭
+  bot.js               100.00% ✅ +100.00% 🎉
+  cli.js                60.00% 💛  +60.00% 😍
+  format-coverage.js    35.00% 💔   -1.13% 😥
+  github-comment.js     10.00% 💔  +10.00% 🙂
+  parse-coverage.js      0.00% ❌  -13.64% 😱
+  new-file.js            0.00% ❌
+</pre>",
+  "folders": "<pre>
+src/    10.00% 💔
+</pre>",
+  "status": "30.00% 💔 +11.43% 😀",
+}
+`;
+
+exports[`format formats delta report 2 1`] = `
+Object {
+  "changed": "<pre>
+src/                   20.00% 💔  +10.00% 🙂
+  bot.js               80.00% 💚  -20.00% 😡
+  github-comment.js    25.00% 💔  +15.00% 😀
+  parse-coverage.js    80.00% 💚  +80.00% 😍
+</pre>",
+  "folders": "<pre>
+src/    20.00% 💔
+</pre>",
+  "status": "18.57% 💔 -11.43% 😡",
+}
+`;
+
+exports[`format formats delta report with links 1`] = `
+Object {
+  "changed": "<pre>
+<a href=\\"http://example.com/artifacts/index.html\\">src/                </a>    10.00% 💔   -8.57% 😭
+<a href=\\"http://example.com/artifacts/bot.js.html\\">  bot.js            </a>   100.00% ✅ +100.00% 🎉
+<a href=\\"http://example.com/artifacts/cli.js.html\\">  cli.js            </a>    60.00% 💛  +60.00% 😍
+<a href=\\"http://example.com/artifacts/format-coverage.js.html\\">  format-coverage.js</a>    35.00% 💔   -1.13% 😥
+<a href=\\"http://example.com/artifacts/github-comment.js.html\\">  github-comment.js </a>    10.00% 💔  +10.00% 🙂
+<a href=\\"http://example.com/artifacts/parse-coverage.js.html\\">  parse-coverage.js </a>     0.00% ❌  -13.64% 😱
+<a href=\\"http://example.com/artifacts/new-file.js.html\\">  new-file.js       </a>     0.00% ❌
+</pre>",
+  "folders": "<pre>
+<a href=\\"http://example.com/artifacts/index.html\\">src/</a>    10.00% 💔
+</pre>",
+  "status": "30.00% 💔 +11.43% 😀",
+}
+`;
+
+exports[`format formats delta report with no changes 1`] = `
+Object {
+  "changed": "",
+  "folders": "<pre>
+src/    10.00% 💔
+</pre>",
+  "status": "30.00% 💔 (no change)",
+}
+`;
+
+exports[`format formats report 1`] = `
+Object {
+  "changed": "<pre>
+src/                    18.57% 💔
+  bot.js                 0.00% ❌
+  cli.js                 0.00% ❌
+  format-coverage.js    36.13% 💔
+  github-comment.js      0.00% ❌
+  parse-coverage.js     13.64% 💔
+</pre>",
+  "folders": "<pre>
+src/    18.57% 💔
+</pre>",
+  "status": "18.57% 💔",
+}
+`;
+
+exports[`format formats report with links 1`] = `
+Object {
+  "changed": "<pre>
+<a href=\\"http://example.com/artifacts/index.html\\">src/                </a>    18.57% 💔
+<a href=\\"http://example.com/artifacts/bot.js.html\\">  bot.js            </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/cli.js.html\\">  cli.js            </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/format-coverage.js.html\\">  format-coverage.js</a>    36.13% 💔
+<a href=\\"http://example.com/artifacts/github-comment.js.html\\">  github-comment.js </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/parse-coverage.js.html\\">  parse-coverage.js </a>    13.64% 💔
+</pre>",
+  "folders": "<pre>
+<a href=\\"http://example.com/artifacts/index.html\\">src/</a>    18.57% 💔
+</pre>",
+  "status": "18.57% 💔",
+}
+`;
+
+exports[`format formats report with multiple folders links 1`] = `
+Object {
+  "changed": "<pre>
+<a href=\\"http://example.com/artifacts/index.html\\">src/               </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/bot.js.html\\">  bot.js           </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/cli.js.html\\">  cli.js           </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/curl.js.html\\">  curl.js          </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/github-comment.js.html\\">  github-comment.js</a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/coverage/index.html\\">src/coverage/      </a>   100.00% ✅
+</pre>",
+  "folders": "<pre>
+<a href=\\"http://example.com/artifacts/index.html\\">src/         </a>     0.00% ❌
+<a href=\\"http://example.com/artifacts/coverage/index.html\\">src/coverage/</a>   100.00% ✅
+</pre>",
+  "status": "58.66% 💛",
+}
+`;

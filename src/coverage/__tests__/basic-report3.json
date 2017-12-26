@@ -5,21 +5,25 @@
   "src/": {
     "files": {
       "bot.js": {
-        "percent": 0
+        "percent": 80
       },
       "cli.js": {
-        "percent": 0
+        "percent": 60
       },
       "format-coverage.js": {
-        "percent": 36.13458528951487
+        "percent": 35
       },
       "github-comment.js": {
-        "percent": 0
+        "percent": 25
       },
       "parse-coverage.js": {
-        "percent": 13.636363636363637
+        "percent": 80
+      },
+      "new-file.js": {
+        "percent": 0
       }
     },
-    "percent": 18.57142857142857
+    "htmlPath": "",
+    "percent": 20
   }
 }
